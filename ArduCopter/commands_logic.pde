@@ -36,6 +36,10 @@ static void process_nav_command()
         do_RTL();
         break;
 
+    case MAV_CMD_NAV_GSL:                       // 23
+        do_GSL();
+        break;
+
     default:
         break;
     }
@@ -221,6 +225,16 @@ static void do_RTL(void)
 
     // verify_RTL will do the initialisation for us
     verify_RTL();
+}
+
+// do_GSL - start GuesSLin mode
+static void do_GSL(void)
+{
+    // set gsl state
+    gsl_state = GSL_STATE_START;
+    
+    // verify_GSL will do the initialisation for us
+    verify_GSL();
 }
 
 /********************************************************************************/
@@ -563,6 +577,30 @@ static bool verify_circle()
     // have we rotated around the center enough times?
     return fabsf(circle_angle_total/(2*M_PI)) >= circle_desired_rotations;
 }
+// verify_GSL - handles any state changes required to implement GSL mode
+// do_GSL should have been called once first to initialise all variables
+// return true with GSL mode has completed successfully
+static bool verify_GSL()
+{
+    bool retval = false;
+    switch( gsl_state ) {
+        case GSL_STATE_START:
+            
+            break;
+        case GSL_STATE_INITIAL_CLIMB:
+            break;
+        case GSL_STATE_ALT_HOD_N_SEC:
+            break;
+        case GSL_STATE_LAND:
+            break;
+        default: // this should never happen
+            retval = true;
+            break;
+    }
+    return retval;
+}
+
+
 
 // verify_RTL - handles any state changes required to implement RTL
 // do_RTL should have been called once first to initialise all variables

@@ -354,6 +354,7 @@ static bool set_mode(uint8_t mode)
     bool ignore_checks = !motors.armed();   // allow switching to any mode if disarmed.  We rely on the arming check to perform
 
     switch(mode) {
+/*        
         case ACRO:
             success = true;
             ap.manual_throttle = true;
@@ -366,6 +367,22 @@ static bool set_mode(uint8_t mode)
             acro_roll_rate = 0;
             acro_pitch_rate = 0;
             acro_yaw_rate = 0;
+            break;
+*/
+
+        case ACRO:    // guesslin_mode for lock yaw and climb to spefic height;
+            if (GPS_ok() || ignore_checks) {
+                success = true;
+                ap.manual_throttle = false;
+                ap.manual_attitude = false;
+                /*
+                set_yaw_mode(YAW_HOLD);
+                set_roll_pitch_mode(POSITION_RP);
+                set_throttle_mode();
+                set_nav_mode(POSITION_NAV);
+                */
+                do_GSL();
+            }
             break;
 
         case STABILIZE:

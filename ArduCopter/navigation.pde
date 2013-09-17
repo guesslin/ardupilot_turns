@@ -71,6 +71,9 @@ static void run_autopilot()
         case RTL:
             verify_RTL();
             break;
+        case ARCO:
+            verify_GSL();
+            break;
     }
 }
 

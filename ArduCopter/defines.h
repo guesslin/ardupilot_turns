@@ -232,6 +232,12 @@
 #define LAND_STATE_FLY_TO_LOCATION  0
 #define LAND_STATE_DESCENDING       1
 
+// GSL state
+#define GSL_STATE_START             0
+#define GSL_STATE_INITIAL_CLIMB     1
+#define GSL_STATE_ALT_HOD_N_SEC     2
+#define GSL_STATE_LAND              3
+
 //repeating events
 #define RELAY_TOGGLE 5
 

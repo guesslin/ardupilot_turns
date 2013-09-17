@@ -528,6 +528,7 @@ static int16_t control_roll;
 static int16_t control_pitch;
 static uint8_t rtl_state;               // records state of rtl (initial climb, returning home, etc)
 static uint8_t land_state;              // records state of land (flying to location, descending)
+static uint8_t gsl_state;               // records state of gsl (hold position and YAW, climb to specific height, holding for n sec, landding)
 
 ////////////////////////////////////////////////////////////////////////////////
 // Orientation
